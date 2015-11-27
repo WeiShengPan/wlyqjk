@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import Crawler4Baidu.Crawler4Baidu;
 import Crawler4Baidu.Crawler4BaiduAllWebPage;
 import Crawler4Baidu.Crawler4BaiduNewsPage;
+import Crawler4TianYa.LinksGrab;
 import Output.OutputToExcel;
 
 
@@ -61,6 +62,7 @@ public class Main extends HttpServlet{
 			else if(option.equals("tianya"))
 			{
 				System.out.println("3");
+				LinksGrab linksGrab=new LinksGrab("http://bbs.tianya.cn/",key,Integer.parseInt(pages));
 				System.out.println("tianya");
 			}
 		}
