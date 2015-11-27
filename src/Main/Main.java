@@ -1,6 +1,10 @@
 package Main;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -41,7 +45,10 @@ public class Main extends HttpServlet{
 				crawler4Baidu.setPages(Integer.parseInt(pages));
 				crawler4Baidu.execute();
 				
-				OutputToExcel outputToExcel = new OutputToExcel(crawler4Baidu, "F:\\test.xls", titles);
+				Date nowDate=new Date();
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+				String filePath = "F:\\ExcelFile"+File.separator +"Baidu"+sdf.format(nowDate) +".xls";
+				OutputToExcel outputToExcel = new OutputToExcel(crawler4Baidu, filePath, titles);
 				outputToExcel.createWorkbook();
 			}
 			else if(option.equals("baidunews"))

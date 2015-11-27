@@ -44,10 +44,24 @@ public class OutputToExcel {
 	{
 		
 		try {
-			workbook=Workbook.createWorkbook(new File(fileName));
+			File file = new File(fileName);
+	         if (!file.getParentFile().exists()) {
+	        	 if (!file.getParentFile().mkdirs()) {
+	        		 
+	        	 }
+	         }  
+			 if(!file.exists()) {
+				 try {
+					 file.createNewFile();
+				 } 
+				 catch (IOException e) {
+					 e.printStackTrace();
+				 }  
+		     }
+			workbook=Workbook.createWorkbook(file);
 			WritableSheet sheet=workbook.createSheet("sheet1", 0);
 			
-			//´òÓ¡¹¤×÷±í±êÌâ
+			//ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			for(int i=0;i<titles.length;i++)
 			{
 				Label label=new Label(i,0,titles[i]);
@@ -64,8 +78,8 @@ public class OutputToExcel {
 				
 				for (Map.Entry<String, Element> entry : data.getLinkList().get(i).entrySet()) 
 				{
-//					System.out.printf("±êÌâ:%s\n", entry.getKey());
-//					System.out.printf("ÍøÖ·:%s\n", entry.getValue().attr("abs:href"));
+//					System.out.printf("ï¿½ï¿½ï¿½ï¿½:%s\n", entry.getKey());
+//					System.out.printf("ï¿½ï¿½Ö·:%s\n", entry.getValue().attr("abs:href"));
 					Label resultLabel=null;
 					resultLabel=new Label(0,count,entry.getKey());
 					sheet.addCell(resultLabel);
