@@ -41,7 +41,7 @@ public class Main extends HttpServlet{
 		{	
 			if(option.equals("baidu"))
 			{
-				System.out.println("1");
+
 				Crawler4Baidu crawler4Baidu=new Crawler4BaiduAllWebPage(key);
 				crawler4Baidu.setPages(Integer.parseInt(pages));
 				crawler4Baidu.execute();
@@ -54,14 +54,20 @@ public class Main extends HttpServlet{
 			}
 			else if(option.equals("baidunews"))
 			{
-				System.out.println("2");
+
 				Crawler4Baidu crawler4Baidu=new Crawler4BaiduNewsPage(key);
 				crawler4Baidu.setPages(Integer.parseInt(pages));
 				crawler4Baidu.execute();
+				
+				Date nowDate=new Date();
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
+				String filePath = "F:\\ExcelFile"+File.separator +"BaiduNews"+sdf.format(nowDate) +".xls";
+				OutputToExcel outputToExcel = new OutputToExcel(crawler4Baidu, filePath, titles);
+				outputToExcel.createWorkbook();
 			}
 			else if(option.equals("tianya"))
 			{
-				System.out.println("3");
+				
 				LinksGrab linksGrab=new LinksGrab("http://bbs.tianya.cn/",key,Integer.parseInt(pages));
 				System.out.println("tianya");
 			}

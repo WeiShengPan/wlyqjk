@@ -3,7 +3,6 @@ package Crawler4Baidu;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
@@ -12,7 +11,7 @@ public class Crawler4BaiduNewsPage extends Crawler4Baidu{
 	public Crawler4BaiduNewsPage(String key) {
 		super(key);
 		// TODO Auto-generated constructor stub
-		host="http://www.news.baidu.com";
+		host="http://news.baidu.com";
 		this.key="/ns?word="+key+"&tn=news&from=news&cl=2&rn=20&ct=1";
 		url=host+this.key;
 		
@@ -23,7 +22,6 @@ public class Crawler4BaiduNewsPage extends Crawler4Baidu{
 		// TODO Auto-generated method stub
 		try {
 			doc=Jsoup.connect(url).get();
-			System.out.println(url);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -45,7 +43,7 @@ public class Crawler4BaiduNewsPage extends Crawler4Baidu{
 				if(this.connect()==true)
 				{
 						linkMap=new HashMap<String,Element>();
-						links=doc.select("div#content_left li.result h3.c-title a[href]");
+						links=doc.select("div#content_left h3.c-title a[href]");
 						for(Element link:links)
 						{
 							linkMap.put(link.text(), link);
@@ -63,7 +61,7 @@ public class Crawler4BaiduNewsPage extends Crawler4Baidu{
 	@Override
 	public String getNextPage() {
 		// TODO Auto-generated method stub
-		nextPageLink=doc.select("div#wrapper p#page a:contains(��һҳ)").first();
+		nextPageLink=doc.select("p#page a:contains(下一页)").first();
 		if(nextPageLink==null)
 			url=null;
 		else
@@ -80,8 +78,8 @@ public class Crawler4BaiduNewsPage extends Crawler4Baidu{
 			System.out.printf("page:%d\n", i+1);
 			for(Map.Entry<String, Element> entry:linkList.get(i).entrySet())
 			{
-				System.out.printf("����:%s\n",entry.getKey());
-				System.out.printf("��ַ:%s\n", entry.getValue().attr("abs:href"));
+				System.out.printf("标题:%s\n",entry.getKey());
+				System.out.printf("网址:%s\n", entry.getValue().attr("abs:href"));
 			}
 			System.out.println();
 		}
