@@ -1,26 +1,17 @@
 package Main;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.rmi.ServerException;
-import java.rmi.server.ServerCloneException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.catalina.startup.HomesUserDatabase;
-
 import Crawler4Baidu.Crawler4Baidu;
 import Crawler4Baidu.Crawler4BaiduAllWebPage;
 import Crawler4Baidu.Crawler4BaiduNewsPage;
 import Output.OutputToExcel;
-import sun.print.PrinterJobWrapper;
+
 
 public class Main extends HttpServlet{
 
