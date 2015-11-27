@@ -47,8 +47,8 @@ public class Main extends HttpServlet{
 				crawler4Baidu.execute();
 				
 				Date nowDate=new Date();
-				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-				String filePath = "F:\\ExcelFile"+File.separator +"Baidu"+sdf.format(nowDate) +".xls";
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+				String filePath = "F:\\ExcelFile"+File.separator +key+"_Baidu"+sdf.format(nowDate) +".xls";
 				OutputToExcel outputToExcel = new OutputToExcel(crawler4Baidu, filePath, titles);
 				outputToExcel.createWorkbook();
 			}
@@ -60,8 +60,8 @@ public class Main extends HttpServlet{
 				crawler4Baidu.execute();
 				
 				Date nowDate=new Date();
-				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-				String filePath = "F:\\ExcelFile"+File.separator +"BaiduNews"+sdf.format(nowDate) +".xls";
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+				String filePath = "F:\\ExcelFile"+File.separator +key+"_BaiduNews"+sdf.format(nowDate) +".xls";
 				OutputToExcel outputToExcel = new OutputToExcel(crawler4Baidu, filePath, titles);
 				outputToExcel.createWorkbook();
 			}

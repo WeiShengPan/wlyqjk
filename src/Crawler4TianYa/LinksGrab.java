@@ -44,7 +44,7 @@ public class LinksGrab {
 						url=nextUrl.replace("http://search.tianya.cn/bbs?q="+keyword,
 								"http://search.tianya.cn/bbs?q="+keyword+"&pn="+(i+1));	
 					}
-					this.outputToExcel(atlList);
+					this.outputToExcel(atlList,key);
 				}
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
@@ -94,13 +94,13 @@ public class LinksGrab {
 		}
 	}
 	
-	public void outputToExcel(List<Atl> atlList){
+	public void outputToExcel(List<Atl> atlList,String key){
 //		Workbook inBook=null;
 		WritableWorkbook outBook=null;
 		try {
 			Date nowDate=new Date();
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-			String filePath = "F:\\ExcelFile"+File.separator +"TianYa"+sdf.format(nowDate) +".xls";  
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+			String filePath = "F:\\ExcelFile"+File.separator +key+"_TianYa"+sdf.format(nowDate) +".xls";  
 	         File file = new File(filePath);
 	         if (!file.getParentFile().exists()) {
 	        	 if (!file.getParentFile().mkdirs()) {
